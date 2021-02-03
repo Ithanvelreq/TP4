@@ -26,18 +26,35 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
-void Manager::fillGraph(){}
+void Manager::fillGraph()//Methode sans bug
+{
+    vector<Data>::iterator it; //Iterateur sur decoder.infos
+    pair<int, int> adjacence; //Element d'adjacence de la forme target referer
+    pair<map<pair<int, int> , int>::iterator,bool> ret; //pair sur graph
+    int target;
+    int referer;
+
+    for (it = decoder.infos.begin(); it<decoder.infos.end(); it++){
+        target = (int) liens.find(it->target)->second;
+        referer = (int) liens.find(it->referer)->second;
+        adjacence = make_pair(target, referer);
+        ret = graph.insert(make_pair(adjacence, 1));
+        if(!ret.second){
+            ret.first->second++;
+        }
+    }
+}
 
 void Manager::decode(string log, int time, int ext)
 {
     //decoder.decode(log, time, ext);
 }
 
-void Manager::fillCibleNbHits ()//Sans bug
+void Manager::fillCibleNbHits ()//pas de bug
 {
     vector<Data>::iterator it; //Iterateur sur decoder.infos
-    pair<map<int,int>::iterator,bool> ret; //Iterateur sur cibleNbHits
-    map<string,int>::iterator idx;
+    pair<map<int,int>::iterator,bool> ret; //pair sur cibleNbHits
+    map<string,int>::iterator idx; // iterator sur liens
     pair<int, int> ins;
 
     for (it = decoder.infos.begin(); it<decoder.infos.end(); it++){
@@ -51,12 +68,18 @@ void Manager::fillCibleNbHits ()//Sans bug
 }
 
 
-void Manager::findTop10(){}
+void Manager::findTop10(){ //Pas de bug
+    map<int, int>:: iterator itcnh; // Iterateur sur cibleNbHits
+    
+    for(itcnh = cibleNbHits.begin(); itcnh!= cibleNbHits.end(); itcnh++){
+        top10.insert(make_pair(itcnh->second, itcnh->first));
+    }
+}
 
 void Manager::fillIndex ()//Sans bug
 {
     vector<Data>::iterator itdata; //iterateur de decoder.infos
-    pair<map<string,int>::iterator,bool> ret;
+    pair<map<string,int>::iterator,bool> ret; //pair sur cibleNbHit
 
     for (itdata = decoder.infos.begin(); itdata<decoder.infos.end(); itdata++){
 

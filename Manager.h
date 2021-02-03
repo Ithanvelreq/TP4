@@ -123,11 +123,11 @@ public:
 //protected:
 //----------------------------------------------------- Attributs proteges
 Decoder decoder;
-//Graph graph;
-map<int, int> cibleNbHits;
-multimap<int, int> top10;
-map<string, int> liens;
-vector<string *> index;
+map<pair<int, int> , int> graph; // de la forme (target, referer), nbhits
+map<int, int> cibleNbHits; //de la forme indice sur target, nbhits
+multimap<int, int> top10; //de la forme nbhits, indice sur target
+map<string, int> liens; // de la forme target, index
+vector<string *> index; // pointeur sur target
 
 private:
 //------------------------------------------------------- Attributs prives
