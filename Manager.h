@@ -11,10 +11,22 @@
 
 //--------------------------------------------------- Interfaces utilisees
 using namespace std;
-#include "Decoder.h"
+//#include "Decoder.h"
+#include <vector>
+//#include <multimap>
+#include <map>
+#include <iterator>
 //------------------------------------------------------------- Constantes 
 
-//------------------------------------------------------------------ Types 
+//------------------------------------------------------------------ Types
+typedef struct Data{
+    string target;
+    string referer;
+    
+} Data;
+typedef struct Decoder{
+    vector<Data> infos;
+}Decoder;
 
 //------------------------------------------------------------------------ 
 // Role de la classe <Manager>
@@ -22,13 +34,12 @@ using namespace std;
 //
 //------------------------------------------------------------------------ 
 
-class Manager : public Ancetre
+class Manager
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Methodes publiques
-
     void fillGraph();
     // type Methode ( liste de parametres );
     // Mode d'emploi :
@@ -95,7 +106,7 @@ public:
     // Contrat :
     //
 
-    virtual ~Manager ( );
+    ~Manager ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -103,20 +114,20 @@ public:
 
 //------------------------------------------------------------------ PRIVE 
 
-protected:
+//protected:
 //----------------------------------------------------- Methodes protegees
 
-private:
+//private:
 //------------------------------------------------------- Methodes privees
 
-protected:
+//protected:
 //----------------------------------------------------- Attributs proteges
-//Decoder decoder;
+Decoder decoder;
 //Graph graph;
 map<int, int> cibleNbHits;
 multimap<int, int> top10;
 map<string, int> liens;
-vector<string*> index;
+vector<string *> index;
 
 private:
 //------------------------------------------------------- Attributs prives

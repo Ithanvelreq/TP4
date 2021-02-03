@@ -26,45 +26,56 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
-void fillGraph();
+void Manager::fillGraph(){}
 
-void decode(string log, int time, int ext)
+void Manager::decode(string log, int time, int ext)
 {
     //decoder.decode(log, time, ext);
 }
 
-void fillCibleNbHits ()//Pas teste
+void Manager::fillCibleNbHits ()//Sans bug
 {
-    iterator<vector<Data>>it;
+    vector<Data>::iterator it; //Iterateur sur decoder.infos
+    pair<map<int,int>::iterator,bool> ret; //Iterateur sur cibleNbHits
+    map<string,int>::iterator idx;
+    pair<int, int> ins;
+
     for (it = decoder.infos.begin(); it<decoder.infos.end(); it++){
-        pair<iterator<vector<Data>>, bool> p = fillCibleNbHits.insert(pair<string, int> (it->target, 1))
-        if(!p.second){
-            p.first->second++;
+        idx = liens.find(it->target);
+        ins = make_pair(idx->second, 1);
+        ret = cibleNbHits.insert(ins);
+        if(!ret.second){
+            ret.first->second++;
         }
     }
 }
 
 
-void findTop10();
+void Manager::findTop10(){}
 
-void fillIndex ()//Pas teste
+void Manager::fillIndex ()//Sans bug
 {
-    iterator<vector<Data>> it;
+    vector<Data>::iterator itdata; //iterateur de decoder.infos
+    pair<map<string,int>::iterator,bool> ret;
 
-    for (it = decoder.infos.begin(); it<decoder.infos.end(); it++){
-        if(liens.insert(pair<string, int> (it->target, liens.size()).second)){
-            index.push_back(&it->target);
+    for (itdata = decoder.infos.begin(); itdata<decoder.infos.end(); itdata++){
+
+        ret = liens.insert(pair<string, int> (itdata->target, liens.size()));
+        if(ret.second){
+            index.push_back((string *) &(ret.first->first));
         }
-        if(liens.insert(pair<string, int> (it->referer, liens.size()).second){
-            index.push_back(&it->referer);
+
+        ret = liens.insert(pair<string, int> (itdata->referer, liens.size()));
+        if(ret.second){
+            index.push_back((string *) &(ret.first->first));
         }   
     }
 }
 
 
-void writeDot();
+void Manager::writeDot(){}
 
-void writeTop10()
+void Manager::writeTop10()
 {
 
 }  
@@ -76,11 +87,11 @@ void writeTop10()
 
 
 //------------------------------------------------- Surcharge d'op�rateurs
-Manager & Manager::operator = ( const Manager & unManager )
+//Manager & Manager::operator = ( const Manager & unManager )
 // Algorithme :
 //
-{
-} //----- Fin de operator =
+//{
+//} //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur

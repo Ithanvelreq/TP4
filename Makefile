@@ -1,13 +1,12 @@
 CC=g++
-CFLAGS=-W -Wall -ansi -pedantic -DMAP
+CFLAGS= -Wall -DMAP
 EXEC=maintest
-all: $(EXEC)
 
-$(EXEC): $(EXEC).o Manager.o
-	$(CC) -o $@ $^ $(LDFLAGS)	
+$(EXEC): Manager.o maintest.o
+	$(CC) -o maintest maintest.o Manager.o $(CFLAGS)
 
-$(EXEC).o: $(EXEC).cpp
+maintest.o: maintest.cpp Manager.cpp Manager.h
+	$(CC) -c -o maintest.o maintest.cpp $(CFLAGS)
+
 Manager.o: Manager.cpp Manager.h
-
-%.o: %.cpp
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	$(CC) -c -o Manager.o Manager.cpp $(CFLAGS)
