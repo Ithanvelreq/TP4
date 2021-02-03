@@ -12,8 +12,9 @@
 //--------------------------------------------------- Interfaces utilisees
 using namespace std;
 //#include "Decoder.h"
+#include <iostream>
+#include<fstream>
 #include <vector>
-//#include <multimap>
 #include <map>
 #include <iterator>
 //------------------------------------------------------------- Constantes 
@@ -75,7 +76,7 @@ public:
     // Contrat :
     //
 
-    void writeDot();
+    ofstream & writeDot(ofstream & os); //Changer en ofstream
     // type Methode ( liste de parametres );
     // Mode d'emploi :
     //

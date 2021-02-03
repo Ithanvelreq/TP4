@@ -11,7 +11,6 @@
 
 //-------------------------------------------------------- Include syst�me
 using namespace std;
-#include <iostream>
 
 //------------------------------------------------------ Include personnel
 #include "Manager.h"
@@ -96,11 +95,34 @@ void Manager::fillIndex ()//Sans bug
 }
 
 
-void Manager::writeDot(){}
+ofstream & Manager::writeDot(ofstream & os){ //methode sans bug
+    int i;
+    map<pair<int, int> , int>::iterator it; //Iterateur sur graph
 
-void Manager::writeTop10()
+    os << "digraph {" << endl;
+
+    for(i = 0; i < index.size(); i++){
+        os << "node"<<i<<" [label=\""<< *index.at(i) << "\"]"<< endl;
+    }
+
+    for(it = graph.begin(); it!=graph.end(); it++){
+        os <<"node"<< it->first.second <<" -> node" <<it->first.first << " [label=\"" <<  it->second << "\"]" << endl;
+    }
+
+    os << "}";
+    return os;
+}
+
+
+void Manager::writeTop10() //Methode sans bug
 {
-
+    int i = 0;
+    multimap<int, int>::reverse_iterator it = top10.rbegin(); //Iterateur sur top10
+    while(i<10 && it!=top10.rend()){
+        cout << *index.at(it->second) << " ( " << it->first << " hits)" << endl;
+        i++;
+        it++;
+    }
 }  
 // type Manager::M�thode ( liste de param�tres )
 // Algorithme :
