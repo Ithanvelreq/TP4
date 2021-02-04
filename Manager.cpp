@@ -44,7 +44,7 @@ void Manager::fillGraph()//Methode sans bug
     }
 }
 
-void Manager::decode(string log, int time, int ext)
+void Manager::decode(ifstream & log, int time, int ext)
 {
     //decoder.decode(log, time, ext);
 }
@@ -96,7 +96,7 @@ void Manager::fillIndex ()//Sans bug
 
 
 ofstream & Manager::writeDot(ofstream & os){ //methode sans bug
-    int i;
+    long unsigned int i;
     map<pair<int, int> , int>::iterator it; //Iterateur sur graph
 
     os << "digraph {" << endl;

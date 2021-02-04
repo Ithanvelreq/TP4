@@ -48,7 +48,7 @@ public:
     // Contrat :
     //
 
-    void decode(string log, int time, int ext);
+    void decode(ifstream & log, int time, int ext);
     // type Methode ( liste de parametres );
     // Mode d'emploi :
     //
