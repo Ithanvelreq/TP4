@@ -62,7 +62,7 @@ public:
     // Contrat :
     //
 
-    void findTop10();
+    void findRanking();
     // type Methode ( liste de parametres );
     // Mode d'emploi :
     //
@@ -83,7 +83,7 @@ public:
     // Contrat :
     //
 
-    void writeTop10();
+    void writeRanking();
     // type Methode ( liste de parametres );
     // Mode d'emploi :
     //
@@ -126,7 +126,7 @@ public:
 Decoder decoder;
 map<pair<int, int> , int> graph; // de la forme (target, referer), nbhits
 map<int, int> cibleNbHits; //de la forme indice sur target, nbhits
-multimap<int, int> top10; //de la forme nbhits, indice sur target
+multimap<int, int> ranking; //de la forme nbhits, indice sur target
 map<string, int> liens; // de la forme target, index
 vector<string *> index; // pointeur sur target
 

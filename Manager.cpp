@@ -67,11 +67,11 @@ void Manager::fillCibleNbHits ()//pas de bug
 }
 
 
-void Manager::findTop10(){ //Pas de bug
+void Manager::findRanking(){ //Pas de bug
     map<int, int>:: iterator itcnh; // Iterateur sur cibleNbHits
     
     for(itcnh = cibleNbHits.begin(); itcnh!= cibleNbHits.end(); itcnh++){
-        top10.insert(make_pair(itcnh->second, itcnh->first));
+        ranking.insert(make_pair(itcnh->second, itcnh->first));
     }
 }
 
@@ -114,11 +114,11 @@ ofstream & Manager::writeDot(ofstream & os){ //methode sans bug
 }
 
 
-void Manager::writeTop10() //Methode sans bug
+void Manager::writeRanking() //Methode sans bug
 {
     int i = 0;
-    multimap<int, int>::reverse_iterator it = top10.rbegin(); //Iterateur sur top10
-    while(i<10 && it!=top10.rend()){
+    multimap<int, int>::reverse_iterator it = ranking.rbegin(); //Iterateur sur ranking
+    while(i<10 && it!=ranking.rend()){
         cout << *index.at(it->second) << " ( " << it->first << " hits)" << endl;
         i++;
         it++;
@@ -157,7 +157,7 @@ Manager::Manager ( )
     //Decoder decoder;
     //Graph graph;
     map<int, int> cibleNbHits;
-    multimap<int, int> top10;
+    multimap<int, int> ranking;
     map<string, int> liens;
     vector<string*> index;
     #ifdef MAP
