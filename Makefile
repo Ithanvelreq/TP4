@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -Wall -DMAP
+CFLAGS=
 EXEC=main
 
 $(EXEC): Decoder.o Manager.o $(EXEC).o

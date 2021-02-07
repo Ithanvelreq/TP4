@@ -2,13 +2,12 @@
 #include <fstream>
 #include <cstring>
 #include "Manager.h"
-void afficherGraph(Manager & manag);
 int main(int argc, char * argv[])
 {
     int i;
     int flagtime = -1;
     int flagext = 0;
-    int flaggraph = -1;
+    int flaggraph = 0;
     int flaglog = -1;
     int flagrank = 0;
     string timekey = "-t";
@@ -118,16 +117,9 @@ int main(int argc, char * argv[])
     if(flaggraph){
         manager.fillGraph();
         manager.writeDot(os);
+        cout << "Un fichier .dot vient d'etre cree" << endl;
     }
     manager.writeRanking(flagrank);
-    //afficherGraph(manager);
 
     return 0; //Pas d'erreur
-}
-
-void afficherGraph(Manager & manag){
-    map<pair<int, int> , int>::iterator it;
-    for(it = manag.graph.begin(); it!=manag.graph.end(); it++){
-        cout  << "referer : " << *manag.index.at(it->first.second) << " target : " << *manag.index.at(it->first.first) << " hited : "<< it->second << "times" << endl;
-    }
 }
