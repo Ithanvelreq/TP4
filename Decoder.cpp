@@ -35,18 +35,25 @@ int i=0;
 		d.A_user = extract(mot,' ');
 		extract(mot,'[');
 		d.date = extract(mot,':');
-		d.heure = stoi(extract(mot,':'));
+		try{
+			d.heure = stoi(extract(mot,':'));
+		}catch (const invalid_argument & e){
+			d.heure = -1;
+		}
 		extract(mot,'"');
 		extract(mot,' ');
 		d.target = extract(mot,' ');
 		clean(d.target);
 		extract(mot,' ');
-		d.status = stoi(extract(mot,' '));
-		string tmp = extract(mot,' ');
-		if(isdigit(tmp[0])){
-		d.size = stoi(tmp);
-		}else{
-		d.size = -1;
+		try{
+			d.status = stoi(extract(mot,' '));
+		}catch(const invalid_argument & e){
+			d.status = -1;
+		}
+		try{
+			d.size = stoi(extract(mot, ' '));
+		}catch(const invalid_argument & e){
+			d.size = -1;
 		}
 		extract(mot,'"');
 		d.referer = extract(mot,'"');
