@@ -1,9 +1,9 @@
 CC=g++
 CFLAGS= -Wall -DMAP
-EXEC=maintest
+EXEC=main
 
 $(EXEC): Manager.o $(EXEC).o
-	$(CC) -o maintest maintest.o Manager.o $(CFLAGS)
+	$(CC) -o $(EXEC) $(EXEC).o Manager.o $(CFLAGS)
 
 $(EXEC).o: Manager.cpp Manager.h
 

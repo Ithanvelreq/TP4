@@ -83,7 +83,7 @@ public:
     // Contrat :
     //
 
-    void writeRanking();
+    void writeRanking( int num);
     // type Methode ( liste de parametres );
     // Mode d'emploi :
     //

@@ -114,11 +114,14 @@ ofstream & Manager::writeDot(ofstream & os){ //methode sans bug
 }
 
 
-void Manager::writeRanking() //Methode sans bug
+void Manager::writeRanking(int num) //Methode sans bug
 {
     int i = 0;
+    if( num == 0){
+        num = ranking.size();
+    }
     multimap<int, int>::reverse_iterator it = ranking.rbegin(); //Iterateur sur ranking
-    while(i<10 && it!=ranking.rend()){
+    while(i<num && it!=ranking.rend()){
         cout << *index.at(it->second) << " ( " << it->first << " hits)" << endl;
         i++;
         it++;
