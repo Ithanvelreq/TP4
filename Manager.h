@@ -11,7 +11,7 @@
 
 //--------------------------------------------------- Interfaces utilisees
 using namespace std;
-//#include "Decoder.h"
+#include "Decoder.h"
 #include <iostream>
 #include<fstream>
 #include <vector>
@@ -20,15 +20,6 @@ using namespace std;
 //------------------------------------------------------------- Constantes 
 
 //------------------------------------------------------------------ Types
-typedef struct Data{
-    string target;
-    string referer;
-    
-} Data;
-typedef struct Decoder{
-    vector<Data> infos;
-}Decoder;
-
 //------------------------------------------------------------------------ 
 // Role de la classe <Manager>
 //

@@ -1,16 +1,16 @@
 /*************************************************************************
                            Decoder  -  description
                              -------------------
-    début                : 20/01/2021
+    dï¿½but                : 20/01/2021
     copyright            : (C) 2021 par VELARDE REQUENA MDARHRI
     e-mail               : ithan.velarde-requena@insa-lyon.fr taha.mdarhri@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <Decoder> (fichier Decoder.cpp) ------------
+//---------- Rï¿½alisation de la classe <Decoder> (fichier Decoder.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 #include <iostream>
 #include <cstring>
 #include <fstream>
@@ -23,12 +23,12 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 #define TAILLE 400
 //----------------------------------------------------------------- PUBLIC
-//----------------------------------------------------- Méthodes publiques
+//----------------------------------------------------- Mï¿½thodes publiques
 void Decoder::Decode(ifstream & log, int time, int ext){
 int i=0;
 	string mot ;
-	getline(log, mot);
 	while(log.peek() != EOF){
+		getline(log,mot);
 		Data d;
 		d.ipadd = extract(mot,' ');
 		d.userlogname = extract(mot,' ');
@@ -56,7 +56,6 @@ int i=0;
 		if ( ((ext && !extension(d.target)) || !ext) && ( (time<0 || time>23) || ( (time>=0 && time<=23) && d.heure==time) ) ){
 		infos.push_back(d);
 		}
-		getline(log,mot);
 		i++;
 	}
 	if(i==0){
@@ -107,7 +106,7 @@ return 0;
 }
 }
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
 
 

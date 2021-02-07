@@ -2,11 +2,12 @@
 #include <fstream>
 #include <cstring>
 #include "Manager.h"
+void afficherGraph(Manager & manag);
 int main(int argc, char * argv[])
 {
     int i;
     int flagtime = -1;
-    int flagext = -1;
+    int flagext = 0;
     int flaggraph = -1;
     int flaglog = -1;
     int flagrank = 0;
@@ -19,6 +20,8 @@ int main(int argc, char * argv[])
     string source;
     string writedot;
     string s;
+    ifstream is;
+    ofstream os;
     Manager manager;
     for(i = 1; i<argc; i++){
         s.assign(argv[i]);
@@ -60,7 +63,6 @@ int main(int argc, char * argv[])
                 cerr << "faut suivre cet exemple demo.dot" << endl;
                 return 5; //Code de cette erreur
             }
-            ofstream os;
             os.open(s);
 
             if(!os.is_open()){
@@ -71,7 +73,6 @@ int main(int argc, char * argv[])
             flaggraph = 1;
 
         }else if(s.rfind(logkey) != string::npos){
-            ifstream is;
             is.open(s);
             if(!is.is_open()){
                 cerr << "Le fichier .log n'as pas pu etre ouvert, verifiez son nom svp" << endl;
@@ -108,8 +109,7 @@ int main(int argc, char * argv[])
         cerr << "Le fichier .log n'as pas ete indique, veuillez l'indiquer svp" << endl;
         return 12; //Code de cette erreur
     }
-    cout << "tout c'est bien passe" << endl;
-    /*
+    
     manager.decode(is, flagtime, flagext);
     manager.fillIndex();
     manager.fillCibleNbHits();
@@ -117,10 +117,17 @@ int main(int argc, char * argv[])
 
     if(flaggraph){
         manager.fillGraph();
-        manager.writeDot();
+        manager.writeDot(os);
     }
-    manager.writeRanking();
-    */
+    manager.writeRanking(flagrank);
+    //afficherGraph(manager);
 
     return 0; //Pas d'erreur
+}
+
+void afficherGraph(Manager & manag){
+    map<pair<int, int> , int>::iterator it;
+    for(it = manag.graph.begin(); it!=manag.graph.end(); it++){
+        cout  << "referer : " << *manag.index.at(it->first.second) << " target : " << *manag.index.at(it->first.first) << " hited : "<< it->second << "times" << endl;
+    }
 }

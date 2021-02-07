@@ -46,7 +46,7 @@ void Manager::fillGraph()//Methode sans bug
 
 void Manager::decode(ifstream & log, int time, int ext)
 {
-    //decoder.decode(log, time, ext);
+    decoder.Decode(log, time, ext);
 }
 
 void Manager::fillCibleNbHits ()//pas de bug
