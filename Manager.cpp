@@ -1,11 +1,11 @@
 /*************************************************************************
                            Manager  -  description
                              -------------------
-    d�but                : ${date}
-    copyright            : (C) ${year} par ${user}
+    d�but                : Decembre 2021
+    copyright            : (C) 2021 par MDARHRI VELARDE
 *************************************************************************/
 
-//---------- R�alisation de la classe <Manager> (fichier ${file_name}) --
+//---------- R�alisation de la classe <Manager> (Manager.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -25,7 +25,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
-void Manager::fillGraph()//Methode sans bug
+void Manager::fillGraph()
 {
     vector<Data>::iterator it; //Iterateur sur decoder.infos
     pair<int, int> adjacence; //Element d'adjacence de la forme target referer
@@ -42,14 +42,14 @@ void Manager::fillGraph()//Methode sans bug
             ret.first->second++;
         }
     }
-}
+}//fin de fillGraph()
 
 void Manager::decode(ifstream & log, int time, int ext)
 {
     decoder.Decode(log, time, ext);
-}
+}//fin de decode()
 
-void Manager::fillCibleNbHits ()//pas de bug
+void Manager::fillCibleNbHits ()
 {
     vector<Data>::iterator it; //Iterateur sur decoder.infos
     pair<map<int,int>::iterator,bool> ret; //pair sur cibleNbHits
@@ -64,18 +64,18 @@ void Manager::fillCibleNbHits ()//pas de bug
             ret.first->second++;
         }
     }
-}
+}//fin de fillCibleNbHits
 
 
-void Manager::findRanking(){ //Pas de bug
+void Manager::findRanking(){
     map<int, int>:: iterator itcnh; // Iterateur sur cibleNbHits
     
     for(itcnh = cibleNbHits.begin(); itcnh!= cibleNbHits.end(); itcnh++){
         ranking.insert(make_pair(itcnh->second, itcnh->first));
     }
-}
+}//fin de findRanking()
 
-void Manager::fillIndex ()//Sans bug
+void Manager::fillIndex ()
 {
     vector<Data>::iterator itdata; //iterateur de decoder.infos
     pair<map<string,int>::iterator,bool> ret; //pair sur cibleNbHit
@@ -92,10 +92,10 @@ void Manager::fillIndex ()//Sans bug
             index.push_back((string *) &(ret.first->first));
         }   
     }
-}
+}//fin de fillIndex()
 
 
-ofstream & Manager::writeDot(ofstream & os){ //methode sans bug
+ofstream & Manager::writeDot(ofstream & os){
     long unsigned int i;
     map<pair<int, int> , int>::iterator it; //Iterateur sur graph
 
@@ -111,10 +111,10 @@ ofstream & Manager::writeDot(ofstream & os){ //methode sans bug
 
     os << "}";
     return os;
-}
+}//fin de writeDot()
 
 
-void Manager::writeRanking(int num) //Methode sans bug
+void Manager::writeRanking(int num)
 {
     int i = 0;
     if( num == 0){
@@ -126,26 +126,9 @@ void Manager::writeRanking(int num) //Methode sans bug
         i++;
         it++;
     }
-}  
-// type Manager::M�thode ( liste de param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
-
-
-//------------------------------------------------- Surcharge d'op�rateurs
-//Manager & Manager::operator = ( const Manager & unManager )
-// Algorithme :
-//
-//{
-//} //----- Fin de operator =
-
-
+}//fin de writeRanking(int num)
 //-------------------------------------------- Constructeurs - destructeur
 Manager::Manager ( const Manager & unManager )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Manager>" << endl;
@@ -154,15 +137,7 @@ Manager::Manager ( const Manager & unManager )
 
 
 Manager::Manager ( )
-// Algorithme :
-//
 {
-    //Decoder decoder;
-    //Graph graph;
-    map<int, int> cibleNbHits;
-    multimap<int, int> ranking;
-    map<string, int> liens;
-    vector<string*> index;
     #ifdef MAP
         cout << "Appel au constructeur de <Manager>" << endl;
     #endif
@@ -170,17 +145,9 @@ Manager::Manager ( )
 
 
 Manager::~Manager ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Manager>" << endl;
 #endif
 } //----- Fin de ~Manager
 
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- M�thodes prot�g�es
-
-//------------------------------------------------------- M�thodes priv�es

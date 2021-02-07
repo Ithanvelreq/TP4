@@ -1,7 +1,17 @@
+/*************************************************************************
+                           main  -  description
+                             -------------------
+    debut                : Decembre 2020
+    copyright            : (C) 2021 par MDARHRI VELARDE
+*************************************************************************/
+
+//---------- Interface de la mehtode main (fichier main.cpp) ------
+//--------------------------------------------------- Interfaces utilisees
 #include <iostream>
 #include <fstream>
 #include <cstring>
 #include "Manager.h"
+//--------------------------------------------------- Methode main
 int main(int argc, char * argv[])
 {
     int i;
@@ -24,7 +34,7 @@ int main(int argc, char * argv[])
     Manager manager;
     for(i = 1; i<argc; i++){
         s.assign(argv[i]);
-        if(!s.compare(timekey)){
+        if(!s.compare(timekey)){ //Traitement pour l'option -t
             i++;
             if(i == argc){
                 cerr << "Creneau horaire pas specifie dans la bonne position ou pas specifie" << endl;
@@ -45,11 +55,11 @@ int main(int argc, char * argv[])
 
             cout << "Prise en compte seulement des hits entre " << flagtime << "h et " << (flagtime +1) << "h" << endl;
 
-        }else if(!s.compare(extkey)){
+        }else if(!s.compare(extkey)){ //Traitement pour l'option -e
             flagext = 1;
             cout << "Fichiers de type css, image ou javascript ignores" << endl;
 
-        }else if(!s.compare(graphkey)){
+        }else if(!s.compare(graphkey)){ //Traitement pour l'option -g
             i++;
             if(i == argc){
                 cerr << "Fichier d'ecriture du graph pas specifie dans la bonne position ou pas specifie" << endl;
@@ -71,7 +81,7 @@ int main(int argc, char * argv[])
             }
             flaggraph = 1;
 
-        }else if(s.rfind(logkey) != string::npos){
+        }else if(s.rfind(logkey) != string::npos){//Traitement pour l'ouverture du fichier .log
             is.open(s);
             if(!is.is_open()){
                 cerr << "Le fichier .log n'as pas pu etre ouvert, verifiez son nom svp" << endl;
@@ -79,7 +89,7 @@ int main(int argc, char * argv[])
                 return 7; //Code de cette erreur
             }
             flaglog = 1;
-        }else if(s.rfind(rankkey) != string::npos){
+        }else if(s.rfind(rankkey) != string::npos){//Traitement pour l'option -r
             i++;
             if(i == argc){
                 cerr << "Nombre de resultats a afficher pas specifie dans la bonne position ou pas specifie" << endl;
@@ -122,4 +132,4 @@ int main(int argc, char * argv[])
     manager.writeRanking(flagrank);
 
     return 0; //Pas d'erreur
-}
+}//fin de methode main
